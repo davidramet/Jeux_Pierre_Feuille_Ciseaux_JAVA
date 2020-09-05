@@ -1,0 +1,79 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Pierre_Feuille_Ciseaux {
+    public static void main(String arg0[]){
+        //Déclaration
+        int choixMenu = 0;
+        Scanner clavier = new Scanner(System.in);
+
+        System.out.println("-----------------------------------------------");
+        System.out.println("---------JEUX PIERRE FEUILLE CISEAUX-----------");
+        System.out.println("-----------------------------------------------");
+
+        System.out.println("1/ Jouer avec l'ordinateur");
+        System.out.println("2/ Quitter");
+        System.out.print("Votre choix :");
+        choixMenu = clavier.nextInt();
+
+        System.out.println();
+        System.out.println("-----------------------------------------------");
+        System.out.println();
+
+        //MENU DU JEUX
+        switch (choixMenu){
+            case 1:
+                //declarations
+                String[] tabChoix = {"Pierre", "Feuille", "Ciseaux"};
+                int choixJoueurPartie = 0;
+                int scorejoueur = 0;
+                int scoreOrdi = 0;
+
+                do {
+                    //choix du joueur pour la partie
+                    System.out.println("Veuillez saisir votre choix (0:pierre / 1:feuille / 2:ciseaux)");
+                    choixJoueurPartie = clavier.nextInt();
+                    String choixJoueurPartieEnCour = tabChoix[choixJoueurPartie];
+
+                    //choix aleatoire ordinateur pour son tour de jeux
+                    Random choixOrdinateur = new Random();
+                    String choixOrdi = tabChoix[choixOrdinateur.nextInt(tabChoix.length)];
+
+                    System.out.println("Le joueur joue : " + choixJoueurPartieEnCour + " et L'ordinateur joue : " + choixOrdi);
+
+                    if((choixJoueurPartieEnCour == "Pierre" && choixOrdi == "Pierre") || (choixJoueurPartieEnCour == "Feuille" && choixOrdi == "Feuille") || (choixJoueurPartieEnCour == "Ciseaux" && choixOrdi == "Ciseaux"))
+                    {
+                        System.out.println("Il y a Egalité !");
+                    }else if(choixJoueurPartieEnCour == "Pierre" && choixOrdi == "Ciseaux" || choixJoueurPartieEnCour == "Ciseaux" && choixOrdi == "Feuille" || choixJoueurPartieEnCour =="Feuille" && choixOrdi == "Pierre"){
+                        System.out.println("Le joueur Gagne la manche !");
+                        scorejoueur++;
+                    }else{
+                        System.out.println("L'ordi gagne la manche !");
+                        scoreOrdi++;
+                    }
+
+                    System.out.println();
+                    System.out.println("Score Joueur : " + scorejoueur + " - Score Ordi : " + scoreOrdi);
+
+                    System.out.println();
+                    System.out.println("-----------------------------------------------");
+                    System.out.println();
+
+                }while((scorejoueur < 3) && (scoreOrdi < 3));
+
+                if(scorejoueur == 3){
+                    System.out.println("C'est le joueur qui gagne la partie !");
+                    System.out.println();
+                    System.out.println("-----------------------------------------------");
+                }else{
+                    System.out.println("C'est l'ordinateur qui gagne la partie !");
+                    System.out.println();
+                    System.out.println("-----------------------------------------------");
+                }
+                break;
+            case 2:
+                break;
+        }
+
+    }
+}
